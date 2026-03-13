@@ -9,8 +9,10 @@ public class UserObserver implements IObserver{
     }
 
     @Override
-    public void update(String event){
-        System.out.println("-User: "+userName+"\n- Notification received: "+event);
+    public void update(LibraryEvent event){
+        System.out.println("[USER - "+userName+"]"
+                +event.getEventType()
+                +"-"+event.getMaterialName());
     }
 
 }

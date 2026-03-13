@@ -1,5 +1,5 @@
 package observer;
 
 public interface IObserver {
-    void update(String event);
+    void update(LibraryEvent event);
 }

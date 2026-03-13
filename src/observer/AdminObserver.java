@@ -8,7 +8,11 @@ public class AdminObserver implements IObserver{
     }
 
     @Override
-    public void update(String event){
-        System.out.println("-Admin: "+adminName+"\n- Notification received: "+event);
+    public void update(LibraryEvent event){
+        System.out.println("[ADMIN - "+adminName+"]"
+                +event.getEventType()
+                +" | Material: "+event.getMaterialName()
+                +" | User: "+event.getNameUser());
+                
     }
 }
