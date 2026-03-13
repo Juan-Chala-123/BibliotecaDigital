@@ -10,7 +10,10 @@ package model;
  */
 public class Thesis extends Material {
 
-    public Thesis(String code, String title, String author, String category) {
-        super(code, title, author, category);
+    /*
+    *Constructor
+    */
+    public Thesis(String code, String title, String autor, String category, boolean available) {
+        super(code, title, autor, category, available);
     }
 }

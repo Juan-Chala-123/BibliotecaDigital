@@ -13,7 +13,10 @@ public class User {
     private String name;
     private String type;
     private LoanStrategy strategy;
-
+    
+    /*
+    *Constructor
+    */
     public User(String id, String name, String type) {
         this.id = id;
         this.name = name;
@@ -31,4 +34,5 @@ public class User {
     public String getName() {
         return name;
     }
+    
 }

@@ -8,6 +8,12 @@ package model;
  *
  * @author MERARI URBANO
  */
-public class Magazine {
-    
+public class Magazine extends Material {
+
+    /*
+    *Constructor
+    */
+    public Magazine(String code, String title, String autor, String category, boolean available) {
+        super(code, title, autor, category, available);
+    }
 }
