@@ -9,7 +9,7 @@ package strategy;
  * @author CHALA RAMIREZ
  */
 public interface ILoanStrategy {
-    int loanDays();
-    double calculateFinde(int days);
-    int accessPriority();
+    int loanDays(); // Devuelve el número de días que un usuario puede tomar prestado un libro
+    double calculateFinde(int days); // Calcula la multa por retraso en base a los días que se pasó del plazo
+    int accessPriority(); // Devuelve la prioridad de acceso del usuario (mayor número = mayor prioridad)
 }

@@ -12,17 +12,17 @@ public class ProfessorLoanStrategy implements ILoanStrategy {
 
     @Override
     public int loanDays() {
-        return 20;
+        return 20; // Determina cuantos dias tiene permitido prestar un libro
     }
 
     @Override
-    public double calculateFinde(int days) {
+    public double calculateFinde(int days) { // Calcula la multa por los dias de retraso
         double baseFine = LibraryConfig.getInstance().getBaseFine();
         return days * baseFine * 1.0;
     }
 
     @Override
-    public int accessPriority() {
+    public int accessPriority() { // Determina la prioridad
         return 3;
     }
     
