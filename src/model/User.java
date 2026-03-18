@@ -4,6 +4,8 @@
  */
 package model;
 
+import strategy.ILoanStrategy;
+
 /**
  *
  * @author MERARI URBANO
@@ -12,7 +14,7 @@ public class User {
     private String id;
     private String name;
     private String type;
-    private LoanStrategy strategy;
+    private ILoanStrategy strategy;
     
     /*
     *Constructor
@@ -23,11 +25,11 @@ public class User {
         this.type = type;
     }
     
-    public void setStrategy(LoanStrategy s) {
+    public void setStrategy(ILoanStrategy s) {
         this.strategy = s;
     }
 
-    public LoanStrategy getStrategy() {
+    public ILoanStrategy getStrategy() {
         return strategy;
     }
 

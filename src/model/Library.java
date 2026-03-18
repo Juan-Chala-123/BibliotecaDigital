@@ -6,6 +6,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import iterator.*;
 
 /**
  *
@@ -54,5 +55,13 @@ public class Library {
     // Registramos prestamo en el historial
     public void addLoan(Loan loan) {
         loanHistory.add(loan);
+    }
+
+    public void loanMaterial(User user, Material material) {
+        Loan loan = new Loan(user, material);
+
+        loan.startLoan();     // inicia el préstamo
+
+        loanHistory.add(loan); // lo guardas en el historial
     }
 }

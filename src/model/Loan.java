@@ -30,7 +30,7 @@ public class Loan {
 
             loanDate = LocalDate.now();
 
-            int days = user.getStrategy().getLoanDays();
+            int days = user.getStrategy().loanDays();
 
             returnDate = loanDate.plusDays(days);
 

@@ -5,7 +5,6 @@
 package factory;
 import model.Magazine;
 import model.Material;
-import factory.MaterialCreator;
 /**
  *
  * @author Asus
@@ -13,6 +12,6 @@ import factory.MaterialCreator;
 public class MagazineCreator extends MaterialCreator {
      @Override
     public Material createMaterial(String code, String title, String author, String category) {
-        return new Magazine(code, title, author, category); // Crea una revista
+        return new Magazine(code, title, author, category, true); // Crea una revista
     }
 }

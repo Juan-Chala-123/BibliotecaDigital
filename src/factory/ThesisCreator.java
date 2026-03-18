@@ -13,6 +13,6 @@ import factory.MaterialCreator;
 public class ThesisCreator extends MaterialCreator {
      @Override
     public Material createMaterial(String code, String title, String author, String category) {
-        return new Thesis(code, title, author, category); // Crea una tesis
+        return new Thesis(code, title, author, category, true); // Crea una tesis
     }
 }

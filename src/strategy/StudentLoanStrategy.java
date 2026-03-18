@@ -4,6 +4,8 @@
  */
 package strategy;
 
+import singleton.LibraryConfig;
+
 /**
  *
  * @author CHALA RAMIREZ

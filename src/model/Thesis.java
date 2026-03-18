@@ -13,7 +13,7 @@ public class Thesis extends Material {
     /*
     *Constructor
     */
-    public Thesis(String code, String title, String autor, String category, boolean available) {
-        super(code, title, autor, category, available);
+    public Thesis(String code, String title, String author, String category, boolean available) {
+        super(code, title, author, category, available);
     }
 }

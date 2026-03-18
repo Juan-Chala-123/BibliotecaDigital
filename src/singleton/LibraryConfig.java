@@ -40,4 +40,8 @@ public class LibraryConfig {
     public String getLibraryName() {
         return libraryName;
     }
+    
+    public double getBaseFine() {
+        return baseFine;
+    }
 }

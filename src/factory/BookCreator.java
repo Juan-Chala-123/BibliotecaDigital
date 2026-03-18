@@ -13,6 +13,6 @@ import factory.MaterialCreator;
 public class BookCreator extends MaterialCreator{
      @Override
     public Material createMaterial(String code, String title, String author, String category) {
-        return new Book(code, title, author, category); // Crea un libro
+        return new Book(code, title, author, category, true); // Crea un libro
     }
 }
