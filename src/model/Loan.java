@@ -57,5 +57,16 @@ public class Loan {
         System.out.println("Loan closed");
     }
     
+    public Material getMaterial() {
+        return material;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+    
+    public User getUser() {
+        return user;
+    }
     
 }

@@ -16,10 +16,12 @@ public class Library {
 
     private List<Material> materials;
     private List<Loan> loanHistory;
+    private List<User> users;
 
     public Library() {
         materials = new ArrayList<>();
         loanHistory = new ArrayList<>();
+        users = new ArrayList<>();
     }
 
     // Agregamos material a la biblioteca
@@ -60,8 +62,33 @@ public class Library {
     public void loanMaterial(User user, Material material) {
         Loan loan = new Loan(user, material);
 
-        loan.startLoan();     // inicia el préstamo
+        loan.startLoan();
 
-        loanHistory.add(loan); // lo guardas en el historial
+        loanHistory.add(loan);
+    }
+
+    // Agregamos usuarios
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    // Buscar usuarios por id
+    public User findUser(String id) {
+        for (User u : users) {
+            if (u.getId().equals(id)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    // Listamos los usuarios
+    public List<User> getUsers() {
+        return users;
+    }
+
+    // Listamos el histotial de prestamos
+    public List<Loan> getLoanHistory() {
+        return loanHistory;
     }
 }
