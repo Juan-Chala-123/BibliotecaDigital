@@ -292,7 +292,7 @@ public class ConsoleUI {
         String id = scanner.nextLine();
         System.out.print("Name: ");
         String name = scanner.nextLine();
-        System.out.print("Type (admin/student/professor/visitor): ");
+        System.out.print("Type (student/professor/visitor): ");
         String type = scanner.nextLine();
 
         User user = new User(id, name, type);
