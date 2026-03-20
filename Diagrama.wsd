@@ -2,23 +2,22 @@
 skinparam classAttributeIconSize 0
 skinparam linetype ortho
 skinparam packageStyle rectangle
-
 '========================
 ' MODEL PACKAGE
 '========================
-
 package model {
-
     class Library {
         - materials : List<Material>
         - loanHistory : List<Loan>
         + addMaterial(m:Material) : void
         + findMaterial(code:String) : Material
         + getMaterials() : List<Material>
+        + addUser(user : User) : void
+        + getUsers() : List<User>
+        + isMaterialOnLoan(code : String) : boolean
         + createMaterialIterator() : MaterialIterator
         + createLoanIterator() : LoanHistoryIterator
     }
-
     abstract class Material {
         - code : String
         - title : String
@@ -29,24 +28,20 @@ package model {
         + returnMaterial() : void
         + isAvailable() : boolean
     }
-
     class Book
     class Magazine
     class Thesis
-
     Material <|-- Book
     Material <|-- Magazine
     Material <|-- Thesis
-
     class User {
         - id : String
         - name : String
         - type : String
-        - strategy : LoanStrategy
-        + setStrategy(s:LoanStrategy) : void
-        + getStrategy() : LoanStrategy
+        - strategy : ILoanStrategy
+        + setStrategy(s:ILoanStrategy) : void
+        + getStrategy() : ILoanStrategy
     }
-
     class Loan {
         - loanDate : LocalDate
         - returnDate : LocalDate
@@ -56,66 +51,48 @@ package model {
         + startLoan() : void
         + closeLoan() : void
     }
-
     Library "1" o-- "*" Material
     Library "1" o-- "*" Loan
     User "1" -- "*" Loan
     Material "1" -- "*" Loan
-
 }
-
 '========================
 ' FACTORY PACKAGE
 '========================
-
 package factory {
-
     abstract class MaterialCreator {
         + createMaterial(code:String, title:String, author:String, category:String) : Material
     }
-
     class BookCreator
     class MagazineCreator
     class ThesisCreator
-
     MaterialCreator <|-- BookCreator
     MaterialCreator <|-- MagazineCreator
     MaterialCreator <|-- ThesisCreator
-
     BookCreator ..> model.Book
     MagazineCreator ..> model.Magazine
     ThesisCreator ..> model.Thesis
-
 }
-
 '========================
 ' STRATEGY PACKAGE
 '========================
-
 package strategy {
-
     interface ILoanStrategy {
         + loanDays() : int
         + calculateFine(days:int) : double
         + accessPriority() : int
     }
-
     class StudentLoanStrategy
     class ProfessorLoanStrategy
     class VisitorLoanStrategy
-
     ILoanStrategy <|.. StudentLoanStrategy
     ILoanStrategy <|.. ProfessorLoanStrategy
     ILoanStrategy <|.. VisitorLoanStrategy
-
 }
-
 '========================
 ' SINGLETON PACKAGE
 '========================
-
 package singleton {
-
     class LibraryConfig {
         - instance : LibraryConfig
         - libraryName : String
@@ -125,185 +102,159 @@ package singleton {
         - LibraryConfig()
         + getInstance() : LibraryConfig
     }
-
 }
-
 '========================
 ' COMMAND PACKAGE
 '========================
-
 package command {
-
     interface ICommand {
         + execute() : void
     }
-
     class RegisterMaterialCommand {
         - library : Library
         - material : Material
         + execute() : void
     }
-
     class LoanMaterialCommand {
         - library : Library
         - user : User
         - material : Material
         + execute() : void
     }
-
     class ReturnMaterialCommand {
         - loan : Loan
         + execute() : void
     }
-
     class ListMaterialsCommand {
         - library : Library
         + execute() : void
     }
-
+    class DeleteMaterialCommand {
+        - library : Library
+        - code : String
+        + execute() : void
+    }
+    class CheckAvailabilityCommand {
+        - library : Library
+        - code : String
+        + execute() : void
+    }
+    class AddUserCommand {
+        - library : Library
+        - user : User
+        + execute() : void
+    }
+    class ListUsersCommand {
+        - library : Library
+        + execute() : void
+    }
     ICommand <|.. RegisterMaterialCommand
     ICommand <|.. LoanMaterialCommand
     ICommand <|.. ReturnMaterialCommand
     ICommand <|.. ListMaterialsCommand
-
+    ICommand <|.. DeleteMaterialCommand
+    ICommand <|.. CheckAvailabilityCommand
+    ICommand <|.. AddUserCommand
+    ICommand <|.. ListUsersCommand
 }
-
 '========================
 ' OBSERVER PACKAGE
 '========================
-
 package observer {
-
     class LibraryEvent {
         - eventType : String
         - materialName : String
         - userName : String
         - dateTime : LocalDateTime
         + LibraryEvent(eventType:String, materialName:String, userName:String)
-        + getEventType() : String
-        + getMaterialName() : String
-        + getUserName() : String
-        + getDateTime() : LocalDateTime
     }
-
     interface IObserver {
         + update(event:LibraryEvent) : void
     }
-
     class LibraryEventPublisher {
         - observers : List<Observer>
         + addObserver(o:Observer) : void
         + removeObserver(o:Observer) : void
         + notifyObservers(event:LibraryEvent) : void
     }
-
     class UserObserver {
         - userName : String
-        + UserObserver(userName:String)
         + update(event:LibraryEvent) : void
     }
-
     class AdminObserver {
         - adminName : String
-        + AdminObserver(adminName:String)
         + update(event:LibraryEvent) : void
     }
-
     class AuditObserver {
         - FORMATTER : DateTimeFormatter
         + update(event:LibraryEvent) : void
     }
-
-    class LibraryEvents <<constants>> {
-        + {static} MATERIAL_BORROWED : String
-        + {static} MATERIAL_RETURNED : String
-        + {static} MATERIAL_OVERDUE : String
-        + {static} MATERIAL_AVAILABLE : String
-    }
-
-    ' LibraryEventPublisher o-- IObserver : "holds list of"
     LibraryEventPublisher ..> LibraryEvent : uses
     IObserver ..> LibraryEvent : uses
     UserObserver ..|> IObserver : implements
     AdminObserver ..|> IObserver : implements
     AuditObserver ..|> IObserver : implements
-    LibraryEvents ..> LibraryEvent : provides events for
-
 }
-
 '========================
 ' ITERATOR PACKAGE
 '========================
-
 package iterator {
-
     interface Iterator {
         + hasNext() : boolean
         + next() : Object
     }
-
     class MaterialIterator {
         - materials : List<Material>
         - index : int
     }
-
     class LoanHistoryIterator {
         - loans : List<Loan>
         - index : int
     }
-
     Iterator <|.. MaterialIterator
     Iterator <|.. LoanHistoryIterator
-
 }
-
 '========================
 ' UI PACKAGE
 '========================
-
 package ui {
-
     class ConsoleUI {
         + showMenu() : void
-        + executeCommand(cmd:Command) : void
+        + registerMaterial() : void
+        + listMaterials() : void
+        + loanMaterial() : void
+        + returnMaterial() : void
+        + deleteMaterial() : void
+        + checkAvailability() : void
+        + viewLoanHistory() : void
+        + showConfiguration() : void
+        + registerUser() : void
+        + listUsers() : void
     }
-
 }
-
 '========================
 ' MAIN PACKAGE
 '========================
-
 package main {
-
     class Main {
         + main(args:String[]) : void
     }
-
 }
-
 '========================
 ' CROSS-PACKAGE RELATIONSHIPS
 '========================
-
 model.Library --> iterator.MaterialIterator
 model.Library --> iterator.LoanHistoryIterator
-
 ui.ConsoleUI --> command.ICommand
 ui.ConsoleUI --> model.Library
-
 main.Main --> ui.ConsoleUI
 main.Main --> singleton.LibraryConfig
-
-model.User --> strategy.LoanStrategy
-
+model.User --> strategy.ILoanStrategy
 command.LoanMaterialCommand --> model.Loan
 command.ReturnMaterialCommand --> model.Loan
-
 observer.LibraryEventPublisher --> observer.IObserver
 observer.LibraryEventPublisher --> model.Loan
 observer.LibraryEventPublisher --> model.Material
-
 model.Loan --> observer.LibraryEventPublisher
 model.Material --> observer.LibraryEventPublisher
 @enduml
