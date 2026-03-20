@@ -216,6 +216,7 @@ public class ConsoleUI {
         System.out.println("\n--- Return Material ---");
         System.out.print("Material Code: ");
         String code = scanner.nextLine();
+
         Material material = library.findMaterial(code);
 
         if (material == null) {
@@ -223,12 +224,30 @@ public class ConsoleUI {
             return;
         }
 
-        material.returnMaterial();
-        Loan loan = new Loan(null, material);
-        Command cmd = new ReturnMaterialCommand(loan);
+        Loan loanToReturn = null;
+
+        for (Loan loan : library.getLoanHistory()) {
+            if (loan.getMaterial().getCode().equals(code) &&
+                    !loan.getStatus().equalsIgnoreCase("returned")) {
+                loanToReturn = loan;
+                break;
+            }
+        }
+
+        if (loanToReturn == null) {
+            System.out.println("No active loan found for this material.");
+            return;
+        }
+
+        Command cmd = new ReturnMaterialCommand(loanToReturn);
         cmd.execute();
 
-        LibraryEvent event = new LibraryEvent("MATERIAL_RETURNED", material.getTitle(), "User", LocalDateTime.now());
+        LibraryEvent event = new LibraryEvent(
+                "MATERIAL_RETURNED",
+                material.getTitle(),
+                loanToReturn.getUser() != null ? loanToReturn.getUser().getName() : "User",
+                LocalDateTime.now());
+
         publisher.notifyObserver(event);
     }
 
@@ -250,10 +269,21 @@ public class ConsoleUI {
 
     private void viewLoanHistory() {
         System.out.println("\n--- Loan History ---");
+
         LoanHistoryIterator iterator = library.createLoanIterator();
+
+        if (!iterator.hasNext()) {
+            System.out.println("No loan history available.");
+            return;
+        }
+
         while (iterator.hasNext()) {
             Loan loan = (Loan) iterator.next();
-            System.out.println("Status: " + loan.getStatus());
+
+            System.out.println("Material: " + loan.getMaterial().getTitle() +
+                    " | Code: " + loan.getMaterial().getCode() +
+                    " | User: " + (loan.getUser() != null ? loan.getUser().getName() : "N/A") +
+                    " | Status: " + loan.getStatus());
         }
     }
 
