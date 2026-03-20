@@ -70,8 +70,5 @@ public abstract class Material {
         return category;
     }
     
-    public String toString() {
-        return "[" + code + "] " + title + " - " + autor + " (" + category + ") - " 
-           + (available ? "Disponible" : "No disponible");
-    }
+    
 }
