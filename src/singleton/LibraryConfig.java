@@ -20,12 +20,11 @@ public class LibraryConfig {
     private LibraryConfig() {
         libraryName = "Biblioteca Digital";
         maxLoans = 3;
-        baseFine = 2.0;
+        baseFine = 200;
         schedule = "8AM - 4PM";
     }
 
     public static LibraryConfig getInstance() {
-
         if (instance == null) {
             instance = new LibraryConfig();
         }

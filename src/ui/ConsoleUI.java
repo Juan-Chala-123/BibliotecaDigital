@@ -75,9 +75,9 @@ public class ConsoleUI {
                 case 5:
                     deleteMaterial();
                     break;
-//                case 6:
-//                    checkAvailability();
-//                    break;
+                case 6:
+                    checkAvailability();
+                    break;
                 case 7:
                     viewLoanHistory();
                     break;
@@ -210,13 +210,13 @@ public class ConsoleUI {
         cmd.execute();
     }
 
-//    private void checkAvailability() {
-//        System.out.println("\n--- Check Availability ---");
-//        System.out.print("Material Code: ");
-//        String code = scanner.nextLine();
-//        Command cmd = new CheckAvailabilityCommand(library, code);
-//        cmd.execute();
-//    }
+    private void checkAvailability() {
+        System.out.println("\n--- Check Availability ---");
+        System.out.print("Material Code: ");
+        String code = scanner.nextLine();
+        Command cmd = new CheckAvailabilityCommand(library, code);
+        cmd.execute();
+    }
 
     private void viewLoanHistory() {
         System.out.println("\n--- Loan History ---");

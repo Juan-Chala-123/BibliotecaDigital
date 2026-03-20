@@ -51,8 +51,8 @@ public abstract class Material {
      * Indica si el material puede ser prestado en este momento.
      */
     public boolean isAvailable() {
-    return available;
-}
+        return available;
+    }
 
     public String getCode() {
         return code;
