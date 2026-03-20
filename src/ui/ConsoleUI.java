@@ -30,7 +30,6 @@ public class ConsoleUI {
         this.userObservers = new ArrayList<>();
 
         publisher.addObserver(new AdminObserver("Admin"));
-        publisher.addObserver(new AuditObserver());
     }
 
     public void run() {

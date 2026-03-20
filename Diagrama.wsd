@@ -185,15 +185,10 @@ package observer {
         - adminName : String
         + update(event:LibraryEvent) : void
     }
-    class AuditObserver {
-        - FORMATTER : DateTimeFormatter
-        + update(event:LibraryEvent) : void
-    }
     LibraryEventPublisher ..> LibraryEvent : uses
     IObserver ..> LibraryEvent : uses
     UserObserver ..|> IObserver : implements
     AdminObserver ..|> IObserver : implements
-    AuditObserver ..|> IObserver : implements
 }
 '========================
 ' ITERATOR PACKAGE

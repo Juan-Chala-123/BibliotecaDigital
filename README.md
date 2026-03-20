@@ -83,8 +83,7 @@ src/
 │   ├── LibraryEventPublisher.java
 │   ├── LibraryEvent.java
 │   ├── UserObserver.java
-│   ├── AdminObserver.java
-│   └── AuditObserver.java
+│   └── AdminObserver.java
 │
 └── ui/
     └── ConsoleUI.java
