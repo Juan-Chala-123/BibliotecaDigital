@@ -31,13 +31,6 @@ public class AuditObserver implements IObserver{
     @Override
     public void update(LibraryEvent event) {
         String formattedDate= event.getDatetime().format(FORMAT);
-
-        System.out.println("-------------------------------------------------");
-        System.out.println("[AUDIT]");
-        System.out.println("- Date and time: "+formattedDate);
-        System.out.println("- Event Type: "+event.getEventType());
-        System.out.println("- Material: "+event.getMaterialName());
-        System.out.println("- User: "+ event.getNameUser());
-        System.out.println("-------------------------------------------------");
+        System.out.println("[AUDIT - " + formattedDate + "] " + event.getEventType() + ": " + event.getMaterialName());
     }
 }

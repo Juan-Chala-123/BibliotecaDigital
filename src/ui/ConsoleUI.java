@@ -8,6 +8,8 @@ import observer.*;
 import singleton.*;
 import strategy.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleUI {
@@ -17,6 +19,7 @@ public class ConsoleUI {
     private LibraryEventPublisher publisher;
     private ILoanStrategy currentStrategy;
     private Scanner scanner;
+    private List<UserObserver> userObservers;
 
     public ConsoleUI() {
         this.library = new Library();
@@ -24,9 +27,9 @@ public class ConsoleUI {
         this.publisher = new LibraryEventPublisher();
         this.scanner = new Scanner(System.in);
         this.currentStrategy = new StudentLoanStrategy();
+        this.userObservers = new ArrayList<>();
 
-        publisher.addObserver(new UserObserver("SystemUser"));
-        publisher.addObserver(new AdminObserver("AdminMain"));
+        publisher.addObserver(new AdminObserver("Admin"));
         publisher.addObserver(new AuditObserver());
     }
 
@@ -133,8 +136,19 @@ public class ConsoleUI {
         Command cmd = new RegisterMaterialCommand(library, material);
         cmd.execute();
 
-        LibraryEvent event = new LibraryEvent("MATERIAL_REGISTERED", material.getTitle(), "Admin", LocalDateTime.now());
-        publisher.notifyObserver(event);
+        if (!library.getUsers().isEmpty()) {
+            for (UserObserver uo : userObservers) {
+                publisher.removeObserver(uo);
+            }
+            userObservers.clear();
+            for (User user : library.getUsers()) {
+                UserObserver uo = new UserObserver(user.getName());
+                userObservers.add(uo);
+                publisher.addObserver(uo);
+            }
+            LibraryEvent event = new LibraryEvent("MATERIAL_REGISTERED", material.getTitle(), "Admin", LocalDateTime.now());
+            publisher.notifyObserver(event);
+        }
     }
 
     private void listMaterials() {

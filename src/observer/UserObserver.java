@@ -36,9 +36,13 @@ public class UserObserver implements IObserver{
      */
     @Override
     public void update(LibraryEvent event){
-        System.out.println("[USER - "+userName+"]"
-                +event.getEventType()
-                +"-"+event.getMaterialName());
+        if (event.getEventType().equals("MATERIAL_REGISTERED")) {
+            System.out.println(userName + ": Nuevo material disponible: " + event.getMaterialName());
+        } else if (event.getEventType().equals("MATERIAL_LOANED")) {
+            System.out.println(userName + ": Material prestado: " + event.getMaterialName());
+        } else if (event.getEventType().equals("MATERIAL_RETURNED")) {
+            System.out.println(userName + ": Material devuelto: " + event.getMaterialName());
+        }
     }
 
 }

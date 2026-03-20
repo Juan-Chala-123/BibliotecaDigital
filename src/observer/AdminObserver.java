@@ -33,10 +33,12 @@ public class AdminObserver implements IObserver{
      */
     @Override
     public void update(LibraryEvent event){
-        System.out.println("[ADMIN - "+adminName+"]"
-                +event.getEventType()
-                +" | Material: "+event.getMaterialName()
-                +" | User: "+event.getNameUser());
-
+        if (event.getEventType().equals("MATERIAL_REGISTERED")) {
+            System.out.println(adminName + ": Nuevo material registrado: " + event.getMaterialName());
+        } else if (event.getEventType().equals("MATERIAL_LOANED")) {
+            System.out.println(adminName + ": Material prestado a: " + event.getNameUser());
+        } else if (event.getEventType().equals("MATERIAL_RETURNED")) {
+            System.out.println(adminName + ": Material devuelto: " + event.getMaterialName());
+        }
     }
 }
