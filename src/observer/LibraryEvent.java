@@ -45,11 +45,11 @@ public class LibraryEvent {
      * @param nameUser Nombre del usuario que realizó la acción
      * @param datetime Fecha y hora del evento
      */
-    public LibraryEvent(String evenType, String materialName, String nameUser, LocalDateTime datetime){
-        this.eventType= eventType;  // Error: debería ser this.eventType = evenType;
-        this.materialName= materialName;
-        this.nameUser= nameUser;
-        this.datetime= datetime;
+    public LibraryEvent(String eventType, String materialName, String nameUser, LocalDateTime datetime){
+        this.eventType = eventType;
+        this.materialName = materialName;
+        this.nameUser = nameUser;
+        this.datetime = datetime;
     }
 
     /**
