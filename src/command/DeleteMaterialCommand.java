@@ -17,6 +17,10 @@ public class DeleteMaterialCommand implements Command {
     public void execute() {
         Material material = library.findMaterial(code);
         if (material != null) {
+            if (library.isMaterialOnLoan(code)) {
+                System.out.println("Cannot delete. Material is currently on loan.");
+                return;
+            }
             library.getMaterials().remove(material);
             System.out.println("Material deleted: " + material.getTitle());
         } else {

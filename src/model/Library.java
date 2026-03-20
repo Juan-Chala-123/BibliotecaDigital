@@ -91,4 +91,14 @@ public class Library {
     public List<Loan> getLoanHistory() {
         return loanHistory;
     }
+
+    // Verifica si un material está prestado actualmente
+    public boolean isMaterialOnLoan(String code) {
+        for (Loan loan : loanHistory) {
+            if (loan.getMaterial().getCode().equals(code) && loan.getStatus().equals("ACTIVE")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
