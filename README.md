@@ -74,12 +74,6 @@ src/
     └── ConsoleUI.java
 ```
 
-## How to Run
-
-```bash
-ant run
-```
-
 ## Console Menu
 
 ```
