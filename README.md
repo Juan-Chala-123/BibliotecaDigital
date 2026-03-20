@@ -2,19 +2,19 @@
 
 ## Members
 
-### Maicol Sánchez Castañeda
+- Maicol Sánchez Castañeda
 
-### Brayan Estiven Patiño Cabrera
+- Brayan Estiven Patiño Cabrera
 
-### Juan Camilo Guilombo Osorio
+- Juan Camilo Guilombo Osorio
 
-### Juan Esteban Cortes Parra
+- Juan Esteban Cortes Parra
 
-### Juan Mauricio Suaza Solorzano
+- Juan Mauricio Suaza Solorzano
 
-### Merari Urbano
+-  Merari Urbano
 
-### Juan Pablo Chala Ramirez
+- Juan Pablo Chala Ramirez
 
 ## Problem
 
