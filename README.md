@@ -1,5 +1,21 @@
 # Digital Library
 
+## Members
+
+- Maicol Sánchez Castañeda
+
+- Brayan Estiven Patiño Cabrera
+
+- Juan Camilo Guilombo Osorio
+
+- Juan Esteban Cortes Parra
+
+- Juan Mauricio Suaza Solorzano
+
+-  Merari Urbano
+
+- Juan Pablo Chala Ramirez
+
 ## Problem
 
 A digital library needs a console-based Java application to manage loans, returns, collection traversal, user alerts, and creation of different types of bibliographical materials. The system must allow different types of materials to be created through a specialized factory method, in addition to incorporating loan strategies, commands for actions, and event subscriptions.
