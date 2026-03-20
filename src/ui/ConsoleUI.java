@@ -34,10 +34,10 @@ public class ConsoleUI {
     }
 
     public void run() {
-        System.out.println("=== " + config.getLibraryName() + " ===");
-        System.out.println("Max loans per user: " + config.getMaxLoans());
-        System.out.println("Base fine: $" + config.getBaseFine());
-        System.out.println();
+        // System.out.println("=== " + config.getLibraryName() + " ===");
+        // System.out.println("Max loans per user: " + config.getMaxLoans());
+        // System.out.println("Base fine: $" + config.getBaseFine());
+        // System.out.println();
 
         boolean running = true;
 
@@ -50,12 +50,10 @@ public class ConsoleUI {
             System.out.println("5. Delete Material");
             System.out.println("6. Check Availability");
             System.out.println("7. View Loan History");
-            System.out.println("8. Change Loan Strategy");
-            System.out.println("9. Show Configuration");
+            System.out.println("8. Show Configuration");
             System.out.println("--- User Management ---");
-            System.out.println("10. Register User");
-            System.out.println("11. List Users");
-            System.out.println("12. View Loaned Materials");
+            System.out.println("9. Register User");
+            System.out.println("10. List Users");
             System.out.println("0. Exit");
             System.out.print("Choose option: ");
 
@@ -85,19 +83,13 @@ public class ConsoleUI {
                     viewLoanHistory();
                     break;
                 case 8:
-                    changeStrategy();
-                    break;
-                case 9:
                     showConfig();
                     break;
-                case 10:
+                case 9:
                     registerUser();
                     break;
-                case 11:
+                case 10:
                     listUsers();
-                    break;
-                case 12:
-                    viewLoanedMaterials();
                     break;
                 case 0:
                     running = false;
@@ -257,24 +249,6 @@ public class ConsoleUI {
         }
     }
 
-    private void changeStrategy() {
-        System.out.println("\n--- Change Loan Strategy ---");
-        System.out.println("1. Student (7 days, $1/day fine)");
-        System.out.println("2. Professor (14 days, $2/day fine)");
-        System.out.println("3. Visitor (3 days, $3/day fine)");
-        System.out.print("Choose: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-
-        switch (choice) {
-            case 1: currentStrategy = new StudentLoanStrategy(); break;
-            case 2: currentStrategy = new ProfessorLoanStrategy(); break;
-            case 3: currentStrategy = new VisitorLoanStrategy(); break;
-            default: System.out.println("Keeping current strategy"); return;
-        }
-        System.out.println("Strategy updated successfully!");
-    }
-
     private void showConfig() {
         System.out.println("\n--- Library Configuration ---");
         System.out.println("Name: " + config.getLibraryName());
@@ -299,23 +273,6 @@ public class ConsoleUI {
     private void listUsers() {
         Command cmd = new ListUsersCommand(library);
         cmd.execute();
-    }
-
-    private void viewLoanedMaterials() {
-        System.out.println("\n--- Loaned Materials ---");
-        boolean hasLoans = false;
-        for (Loan loan : library.getLoanHistory()) {
-            if (!loan.getStatus().equalsIgnoreCase("returned")) {
-                hasLoans = true;
-                System.out.println("Material: " + loan.getMaterial().getTitle() + 
-                                   " | Code: " + loan.getMaterial().getCode() +
-                                   " | Loaned to: " + (loan.getUser() != null ? loan.getUser().getName() : "N/A") +
-                                   " | Status: " + loan.getStatus());
-            }
-        }
-        if (!hasLoans) {
-            System.out.println("No materials currently on loan.");
-        }
     }
 
     public Library getLibrary() {
