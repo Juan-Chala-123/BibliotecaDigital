@@ -189,6 +189,22 @@ public class ConsoleUI {
             return;
         }
 
+        int activeLoans = 0;
+
+        for (Loan loan : library.getLoanHistory()) {
+            if (loan.getUser() != null &&
+                    loan.getUser().getId().equals(user.getId()) &&
+                    !loan.getStatus().equalsIgnoreCase("returned")) {
+                activeLoans++;
+            }
+        }
+
+        if (activeLoans >= config.getMaxLoans()) {
+            System.out.println("User has reached the maximum number of loans ("
+                    + config.getMaxLoans() + "). Cannot loan more materials.");
+            return;
+        }
+
         Command cmd = new LoanMaterialCommand(library, user, material);
         cmd.execute();
 
