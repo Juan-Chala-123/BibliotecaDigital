@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+<<<<<<< HEAD
+=======
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/CHALA%20RAMIREZ/Desktop/SENA%20-%20TECNOLOGO%20EN%20ANALISIS%20Y%20DESARROLLO%20DE%20SOFTWARE/INSTRUCTOR%20PINTO/BibliotecaDigital/src/model/Material.java</file>
+            <file>file:/C:/Users/CHALA%20RAMIREZ/Desktop/SENA%20-%20TECNOLOGO%20EN%20ANALISIS%20Y%20DESARROLLO%20DE%20SOFTWARE/INSTRUCTOR%20PINTO/BibliotecaDigital/src/factory/MaterialCreator.java</file>
+            <file>file:/C:/Users/CHALA%20RAMIREZ/Desktop/SENA%20-%20TECNOLOGO%20EN%20ANALISIS%20Y%20DESARROLLO%20DE%20SOFTWARE/INSTRUCTOR%20PINTO/BibliotecaDigital/src/factory/BookCreator.java</file>
+            <file>file:/C:/Users/CHALA%20RAMIREZ/Desktop/SENA%20-%20TECNOLOGO%20EN%20ANALISIS%20Y%20DESARROLLO%20DE%20SOFTWARE/INSTRUCTOR%20PINTO/BibliotecaDigital/src/singleton/LibraryConfig.java</file>
+            <file>file:/C:/Users/CHALA%20RAMIREZ/Desktop/SENA%20-%20TECNOLOGO%20EN%20ANALISIS%20Y%20DESARROLLO%20DE%20SOFTWARE/INSTRUCTOR%20PINTO/BibliotecaDigital/src/model/Book.java</file>
+        </group>
+    </open-files>
+>>>>>>> 2e179a07b424875510cf640c2a35c75eb63c7fdb
 </project-private>
