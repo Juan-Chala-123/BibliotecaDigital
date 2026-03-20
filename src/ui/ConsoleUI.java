@@ -264,9 +264,6 @@ public class ConsoleUI {
         User user = new User(id, name, type);
         Command cmd = new AddUserCommand(library, user);
         cmd.execute();
-
-        LibraryEvent event = new LibraryEvent("USER_REGISTERED", user.getName(), "Admin", LocalDateTime.now());
-        publisher.notifyObserver(event);
     }
 
     private void listUsers() {
