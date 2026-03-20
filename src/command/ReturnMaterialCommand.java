@@ -30,8 +30,6 @@ public class ReturnMaterialCommand implements Command {
         
         // se cierra el prestamo
         loan.closeLoan();
-        
-        System.out.println("Material returned successfully.");
     }
     
 }

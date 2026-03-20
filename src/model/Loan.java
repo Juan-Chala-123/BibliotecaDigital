@@ -38,13 +38,6 @@ public class Loan {
 
             material.borrow();
 
-            System.out.println("Loan started for " + user.getName());
-            System.out.println("Return date: " + returnDate);
-
-        } else {
-
-            System.out.println("Material not available");
-
         }
     }
 
@@ -53,8 +46,6 @@ public class Loan {
         status = "RETURNED";
 
         material.returnMaterial();
-
-        System.out.println("Loan closed");
     }
     
     public Material getMaterial() {

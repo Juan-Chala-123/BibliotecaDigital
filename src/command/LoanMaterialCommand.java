@@ -39,7 +39,5 @@ public class LoanMaterialCommand implements Command {
         
         // Se llama al metodo de la biblioteca
         library.loanMaterial(user, material);
-
-        System.out.println("Material loan processed.");
     }
 }

@@ -39,7 +39,7 @@ public class UserObserver implements IObserver{
         if (event.getEventType().equals("MATERIAL_REGISTERED")) {
             System.out.println(userName + ": New material available: " + event.getMaterialName());
         } else if (event.getEventType().equals("MATERIAL_LOANED")) {
-            System.out.println(userName + ":Borrowed material: " + event.getMaterialName());
+            System.out.println(userName + ": Borrowed material: " + event.getMaterialName());
         } else if (event.getEventType().equals("MATERIAL_RETURNED")) {
             System.out.println(userName + ": Returned material: " + event.getMaterialName());
         }
